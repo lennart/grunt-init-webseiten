@@ -28,6 +28,12 @@ module.exports = function(grunt) {
 
           return build;
         }
+      },
+      nginx: {
+        cmd: function(action) {
+          var signal = (action === "start") ? "": "-s " + action;
+          return "nginx -c '" + __dirname + "/nginx.conf' " + signal;
+        }
       }
     },
     modernizr: {
@@ -207,6 +213,11 @@ module.exports = function(grunt) {
   grunt.registerTask('preview', [
     'recess:development',
     'watch:all'
+  ]);
+
+  grunt.registerTask('serve', [
+    'default',
+    'exec:nginx:start'
   ]);
 
   grunt.registerTask('scaffold', [
