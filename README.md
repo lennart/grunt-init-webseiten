@@ -9,9 +9,9 @@
 for now clone via git into your grunt-init template folder
 
 ```bash
-    mkdir -p ~/.grunt-init/templates
-    cd ~/.grunt-init/templates
-    git clone git://github.com/lennart/grunt-init-webseiten webseiten
+mkdir -p ~/.grunt-init
+cd ~/.grunt-init
+git clone git://github.com/lennart/grunt-init-webseiten webseiten
 ```
 
 then 
@@ -34,7 +34,7 @@ webseiten assumes the following:
 _Note that this template will generate files in the current directory, so be sure to change to a new directory first if you don't want to overwrite existing files (grunt will ask)._
 At the command-line, cd into an empty directory, run this command and follow the prompts.
 
-```
+```bash
 grunt-init webseiten
 npm install
 ```
@@ -44,7 +44,7 @@ now you can run `grunt` and check the results in `~/Sites/<your-project-name>`
 
 #### TODO: add a sample index.md to docs folder, so the following works
 
-```
+```bash
 open ~/Sites/<project-name>/index.html
 ```
 
