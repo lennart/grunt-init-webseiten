@@ -15,7 +15,7 @@ git clone git://github.com/lennart/grunt-init-webseiten webseiten
 
 then 
 
-## Usage
+## Opinionism alert
 
 webseiten assumes the following:
 
@@ -30,6 +30,10 @@ webseiten assumes the following:
   * stored in `~/Sites/<project-name>`  
 
 
+## Usage
+
+### Setup
+
 _Note that this template will generate files in the current directory, so be sure to change to a new directory first if you don't want to overwrite existing files (grunt will ask)._
 At the command-line, cd into an empty directory, run this command and follow the prompts.
 
@@ -38,14 +42,57 @@ grunt-init webseiten
 npm install
 ```
 
+### Create Content
+
+To actually see something
+
+Create a file called `index.md` in `~/Documents/<your-project-name>/`.
+
+Put the following into it (Markdown):
+
+```markdown
+---
+title: words, again
+---
+
+> What a great day to end the world.
+
+Thank you for you time,
+
+I'll be gone…
+```
+
+__save__ and now:
+
+### Generate
 
 now you can run `grunt` and check the results in `~/Sites/<your-project-name>`
 
-#### TODO: add a sample index.md to docs folder, so the following works
 
 ```bash
 open ~/Sites/<project-name>/index.html
 ```
+
+### Metadata
+
+Wintersmith allows for different templates with each file.
+
+You can edit jade templates in the `~/Source/<your-project-name>/templates/` folder.
+
+For example:
+
+```markdown
+---
+title: Foobar
+template: hero.jade
+---
+
+* Two steps to success
+* Repeat
+```
+
+To use your shiny hero template on this page.
+
 
 ## Thanks to
 
