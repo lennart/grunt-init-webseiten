@@ -37,7 +37,6 @@ module.exports = function(grunt) {
             bin, "install",
             "&&",
             bin, "--prefix css",
-            "--out '<%= main.build %>'",
             "--name components",
             "build"
           ].join(" ");
