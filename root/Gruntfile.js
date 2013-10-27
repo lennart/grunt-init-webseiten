@@ -9,6 +9,7 @@ module.exports = function(grunt) {
       wintersmith: "{%= public_path %}/{%= assets_dir %}",
       src: "{%= assets_dir %}",
       build: "build/",
+      frozen: "static/",
       dest: "public/",
     },
     // Task configuration.
@@ -126,6 +127,12 @@ module.exports = function(grunt) {
       }
     },
     copy: {
+      frozen: {
+        src: ["**"],
+        expand: true,
+        cwd: "<%= main.frozen %>",
+        dest: "<%= main.wintersmith %>/"
+      },
       assets: {
         src: ["**"],
         expand: true,
@@ -153,19 +160,19 @@ module.exports = function(grunt) {
           expand: true,
           cwd: "node_modules/twitter-bootstrap-3.0.0/less",
           src: ['**/*.less'],  
-          dest: '{%= assets_dir %}css/bootstrap'
+          dest: '<%= main.src %>css/bootstrap'
         },
         {
           expand: true,
           cwd: "node_modules/twitter-bootstrap-3.0.0/js",
           src: ['**/*.js'],
-          dest: '{%= assets_dir %}js/bootstrap'
+          dest: '<%= main.src %>js/bootstrap'
         },
         {
           expand: true,
           cwd: "node_modules/twitter-bootstrap-3.0.0/fonts",
           src: ['**/*'],
-          dest: '{%= assets_dir %}fonts/bootstrap'
+          dest: '<%= main.frozen %>fonts/bootstrap'
         }]
       }
     }
@@ -193,6 +200,7 @@ module.exports = function(grunt) {
     'exec:component',
     'wintersmith:build',
     'concat',
+    'copy:frozen',
     'copy:assets'
   ]);
 
