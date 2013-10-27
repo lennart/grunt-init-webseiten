@@ -2,11 +2,10 @@
 
 > Create a website scaffold with [grunt-init][].
 
-[grunt-init]: http://gruntjs.com/project-scaffolding
 
 ## Installation
 
-for now clone via git into your grunt-init template folder
+for now clone via git into your [grunt-init][] template folder
 
 ```bash
 mkdir -p ~/.grunt-init
@@ -26,7 +25,7 @@ webseiten assumes the following:
 * you're source code is
   * stored in `~/Source/<project-name>`
 * you're project's metadata is
-  * stored in `~/Projects/<project-name>.<editor-extension>` (just SublimeText for now)
+  * stored in `~/Projects/<project-name>.<editor-extension>` (just [SublimeText Projects][st] for now)
 * you're static HTML files are
   * stored in `~/Sites/<project-name>`  
 
@@ -52,6 +51,9 @@ open ~/Sites/<project-name>/index.html
 
 node, npm
 bootstrap, component,
-wintersmith, grunt,
+wintersmith, [grunt][],
 markdown
 
+[grunt]: http://gruntjs.com
+[grunt-init]: http://gruntjs.com/project-scaffolding
+[st]: http://www.sublimetext.com/docs/3/projects.html
