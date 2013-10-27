@@ -81,7 +81,8 @@ module.exports = function(grunt) {
     },
     recess: {
       options: {
-          compile: true
+          compile: true,
+          includePath: "<%= main.src %>bootstrap"
       },
       development: {
           src: ["<%= main.src %>css/<%= pkg.name %>.less", "<%= main.src %>css/devel.less"],
