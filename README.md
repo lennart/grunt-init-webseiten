@@ -18,6 +18,19 @@ then
 
 ## Usage
 
+webseiten assumes the following:
+
+* you're documents are
+  * written in markdown
+  * stored in ~/Documents/<project-name>
+* you're source code is
+  * stored in ~/Source/<project-name>
+* you're project's metadata is
+  * stored in ~/Projects/<project-name>.<editor-extension> (just SublimeText for now)
+* you're static HTML files are
+  * stored in ~/Sites/<project-name>  
+
+
 _Note that this template will generate files in the current directory, so be sure to change to a new directory first if you don't want to overwrite existing files (grunt will ask)._
 At the command-line, cd into an empty directory, run this command and follow the prompts.
 
