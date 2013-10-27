@@ -1,6 +1,6 @@
 {
-  "name": "{%= name %}",
-  "repo": "lennart/{%= name %}",
+  "name": "[%= name %]",
+  "repo": "lennart/[%= name %]",
   "description": "Component: easily apply home.css animations to elements via Javascript.",
   "version": "0.0.1",
   "keywords": [

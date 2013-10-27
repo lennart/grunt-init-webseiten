@@ -63,6 +63,8 @@ exports.template = function(grunt, init, done) {
     // Files to copy (and process).
     var files = init.filesToCopy(props);
 
+    grunt.template.addDelimiters('init', '[%', '%]');
+
     // Actually copy (and process) files.
     init.copyAndProcess(files, props);
 

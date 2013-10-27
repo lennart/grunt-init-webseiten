@@ -5,9 +5,9 @@ module.exports = function(grunt) {
     // Metadata.
     pkg: grunt.file.readJSON('package.json'),
     main: {
-      docs: "{%= docs_path %}",
-      wintersmith: "{%= public_path %}/{%= assets_dir %}",
-      src: "{%= assets_dir %}",
+      docs: "[%= docs_path %]",
+      wintersmith: "[%= public_path %]/[%= assets_dir %]",
+      src: "[%= assets_dir %]",
       build: "build/",
       frozen: "static/",
       dest: "public/",
@@ -147,15 +147,15 @@ module.exports = function(grunt) {
       },
       project: {
         src: ["<%= pkg.name %>.sublime-project"],
-        dest: "{%= projects_path %}.sublime-project"
+        dest: "[%= projects_path %].sublime-project"
       },
       mixmatch: {
         files: [{
-          dest: "<%= main.src %>css/{%= name %}/mixins.less",
+          dest: "<%= main.src %>css/[%= name %]/mixins.less",
           src : ["<%= main.src %>css/bootstrap/mixins.less"],
         },
         {
-          dest: "<%= main.src %>css/{%= name %}/variables.less",
+          dest: "<%= main.src %>css/[%= name %]/variables.less",
           src: ["<%= main.src %>css/bootstrap/variables.less"]
         }]
       }

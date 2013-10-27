@@ -1,6 +1,6 @@
-# Kickstart static-site building
+# [%= name %]
 
-#### You have to run `npm install` the first time before proceeding
+#### You have to run `npm install` the first time before proceeding. Delete this when read
 
 Running
 
