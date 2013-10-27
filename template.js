@@ -28,6 +28,7 @@ exports.template = function(grunt, init, done) {
     var props = { name: value };
     props.dom = true;
     props.port = 9999;
+    props.base_path = base_path;
     props.projects_path = [base_path, "Projects", props.name].join("/");
     props.source_path = [base_path, "Source", props.name].join("/");
     props.docs_path = [base_path, "Documents", props.name].join("/");
@@ -88,6 +89,7 @@ exports.template = function(grunt, init, done) {
         "grunt-contrib-symlink": "*",
         "grunt-contrib-copy": "~0.4.1",
         "grunt-wintersmith": "0.0.2",
+        "wintersmith-nunjucks": "*",
         "twitter-bootstrap-3.0.0": "~3.0.0"
       }
     });

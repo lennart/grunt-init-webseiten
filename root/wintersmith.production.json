@@ -4,5 +4,6 @@
   },
   "output": "{%= public_path %}",
   "ignore": [".git/*"],
-  "contents": "{%= docs_path %}"
+  "contents": "{%= docs_path %}",
+  "plugins": ["wintersmith-nunjucks"]
 }
