@@ -149,7 +149,7 @@ module.exports = function(grunt) {
         dest: "<%= main.wintersmith %>/"
       },
       project: {
-        src: ["devel/<%= pkg.name %>.sublime-project"],
+        src: ["<%= pkg.name %>.sublime-project"],
         dest: "{%= projects_path %}.sublime-project"
       }
     }
