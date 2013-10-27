@@ -3,7 +3,6 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     // Metadata.
-    {% if (package_json) { %}
     pkg: grunt.file.readJSON('package.json'),
     main: {
       docs: "{%= docs_path %}",
@@ -12,21 +11,6 @@ module.exports = function(grunt) {
       build: "build/",
       dest: "public/",
     },
-    banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
-      '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
-      '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
-      '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
-      ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
-    {% } else { %}
-    meta: {
-      version: '0.1.0'
-    },
-    banner: '/*! PROJECT_NAME - v<%= meta.version %> - ' +
-      '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
-      '* http://PROJECT_WEBSITE/\n' +
-      '* Copyright (c) <%= grunt.template.today("yyyy") %> ' +
-      'YOUR_NAME; Licensed MIT */\n',
-    {% } %}
     // Task configuration.
    
     exec: {
@@ -150,6 +134,38 @@ module.exports = function(grunt) {
       project: {
         src: ["<%= pkg.name %>.sublime-project"],
         dest: "{%= projects_path %}.sublime-project"
+      },
+      mixmatch: {
+        files: [{
+          dest: "<%= main.src %>css/{%= name %}/mixins.less",
+          src : ["<%= main.src %>css/bootstrap/mixins.less"],
+        },
+        {
+          dest: "<%= main.src %>css/{%= name %}/variables.less",
+          src: ["<%= main.src %>css/bootstrap/variables.less"]
+        }]
+      }
+    },
+    symlink: {
+      bootstrap: {
+        files: [{
+          expand: true,
+          cwd: "node_modules/twitter-bootstrap-3.0.0/less",
+          src: ['**/*.less'],  
+          dest: '{%= assets_dir %}css/bootstrap'
+        },
+        {
+          expand: true,
+          cwd: "node_modules/twitter-bootstrap-3.0.0/js",
+          src: ['**/*.js'],
+          dest: '{%= assets_dir %}js/bootstrap'
+        },
+        {
+          expand: true,
+          cwd: "node_modules/twitter-bootstrap-3.0.0/fonts",
+          src: ['**/*'],
+          dest: '{%= assets_dir %}fonts/bootstrap'
+        }]
       }
     }
   });
@@ -158,6 +174,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-symlink');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.loadNpmTasks('grunt-recess');
@@ -175,12 +192,18 @@ module.exports = function(grunt) {
     'exec:component',
     'wintersmith:build',
     'concat',
-    'copy'
+    'copy:assets'
   ]);
 
   grunt.registerTask('preview', [
     'recess:development',
     'watch:all'
+  ]);
+
+  grunt.registerTask('scaffold', [
+    'symlink:bootstrap',
+    'copy:mixmatch',
+    'copy:project'
   ]);
 
 };

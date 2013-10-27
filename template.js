@@ -85,6 +85,7 @@ exports.template = function(grunt, init, done) {
         "grunt-modernizr": "*",
         "grunt-contrib-watch": "~0.5.3",
         "grunt-contrib-jshint": "~0.6.4",
+        "grunt-contrib-symlink": "*",
         "grunt-contrib-copy": "~0.4.1",
         "grunt-wintersmith": "0.0.2",
         "twitter-bootstrap-3.0.0": "~3.0.0"
