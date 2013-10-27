@@ -1,0 +1,9 @@
+{
+  "locals": {
+    "title": "{%= name %}"
+  },
+  "output": "{%= public_path %}",
+  "ignore": [".git/*"],
+  "contents": "{%= docs_path %}",
+  "port": {%= port %}
+}
