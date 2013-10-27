@@ -9,8 +9,8 @@
 for now clone via git into your grunt-init template folder
 
 ```bash
-    mkdir -p ~/$HOME/.grunt-init/templates
-    cd $HOME/.grunt-init/templates
+    mkdir -p ~/.grunt-init/templates
+    cd ~/.grunt-init/templates
     git clone git://github.com/lennart/grunt-init-webseiten webseiten
 ```
 
@@ -45,7 +45,7 @@ now you can run `grunt` and check the results in `~/Sites/<your-project-name>`
 #### TODO: add a sample index.md to docs folder, so the following works
 
 ```
-open $HOME/Sites/<project-name>/index.html
+open ~/Sites/<project-name>/index.html
 ```
 
 ## Thanks to
