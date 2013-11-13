@@ -38,7 +38,7 @@ module.exports = function(grunt) {
     },
     modernizr: {
       devFile: "devel/modernizr.js",
-      outputFile: "<%= main.dest %>/libs/modernizr.js",
+      outputFile: "<%= main.build %>modernizr.js",
       uglify: false,
       files: ["!Gruntfile.js", "!<%= main.build %>/*"]
     },
@@ -73,13 +73,38 @@ module.exports = function(grunt) {
       }
     },
     watch: {
-      docs: {
-        files: '<%= main.docs %>**/*',
-        tasks: ['wintersmith:build', 'copy']
+      // docs: {
+      //   files: ['<%= main.docs %>**/*', 'templates/*'],
+      //   tasks: ['wintersmith:preview', 'copy']
+      // },
+      templates: {
+        files: ['templates/*'],
+        tasks: ['wintersmith:preview'],
+        options: {
+          livereload: true
+        }
       },
-      all: {
-        files: ['<%= main.docs %>**/*', '<%= main.src %>**/*', 'templates/*'],
-        tasks: ['wintersmith:build',  'copy']
+      js: {
+        files: ['<%= main.src %>js/<%= pkg.name %>.js'],
+        tasks: ['js', 'concat:js', 'copy:js']
+      },
+      css: {
+        files: [
+          '<%= main.src %>css/<%= pkg.name %>.less'
+        ],
+        tasks: ['css', 'concat:css', 'copy:css'],
+        options: {
+          livereload: true
+        }
+      },
+      lib: {
+        files: [
+          'lib/**/*.js'
+        ],
+        tasks: [],
+        options: {
+          livereload: true
+        }
       },
       gruntfile: {
         files: '<%= jshint.gruntfile.src %>',
@@ -88,19 +113,15 @@ module.exports = function(grunt) {
     },
     recess: {
       options: {
-          compile: true,
-          includePath: "<%= main.src %>bootstrap"
-      },
-      development: {
-          src: ["<%= main.src %>css/<%= pkg.name %>.less", "<%= main.src %>css/devel.less"],
-          dest: "<%= main.dest %>css/<%= pkg.name %>.css"
+        compile: true,
+        includePath: "<%= main.src %>bootstrap"
       },
       production: {
-          options: {
-              compress: true
-          },
-          src: ["<%= main.src %>css/<%= pkg.name %>.less"],
-          dest: "<%= main.dest %>css/<%= pkg.name %>.css"
+        options: {
+            compress: true
+        },
+        src: ["<%= main.src %>css/<%= pkg.name %>.less"],
+        dest: "<%= main.dest %>css/<%= pkg.name %>.css"
       }
     },
     wintersmith: {
@@ -111,7 +132,6 @@ module.exports = function(grunt) {
       },
       preview: {
         options: {
-          action: "preview",
           config: "./wintersmith.preview.json"
         }
       }
@@ -119,13 +139,14 @@ module.exports = function(grunt) {
     concat: {
       css: {
         src: [
-          "<% main.build %>/components.css",
+          "<% main.build %>components.css",
           "<%= recess.production.dest %>"
         ],
         dest: "<%= main.dest %>/css/<%= pkg.name %>.css"
       },
       js: {
         src: [
+          "<%= main.build %>modernizr.js",
           "<%= main.build %>/components.js",
           "<%= main.src %>/js/<%= pkg.name %>.js"
         ],
@@ -137,13 +158,19 @@ module.exports = function(grunt) {
         src: ["**"],
         expand: true,
         cwd: "<%= main.frozen %>",
-        dest: "<%= main.wintersmith %>/"
+        dest: "<%= main.wintersmith %>"
       },
-      assets: {
+      css: {
         src: ["**"],
         expand: true,
-        cwd: "<%= main.dest %>/",
-        dest: "<%= main.wintersmith %>/"
+        cwd: "<%= main.dest %>css/",
+        dest: "<%= main.wintersmith %>css/"
+      },
+      js: {
+        src: ["**"],
+        expand: true,
+        cwd: "<%= main.dest %>js/",
+        dest: "<%= main.wintersmith %>js/"
       },
       project: {
         src: ["<%= pkg.name %>.sublime-project"],
@@ -198,25 +225,30 @@ module.exports = function(grunt) {
   // nginx support needs it
   grunt.loadNpmTasks('grunt-exec');
 
-  // Default task.
-  grunt.registerTask('default', [
-    'jshint',
-    'recess:production',
+  grunt.registerTask('libs', [
     'modernizr',
-    'exec:component',
-    'wintersmith:build',
-    'concat',
-    'copy:frozen',
-    'copy:assets'
+    'exec:component'
   ]);
 
-  grunt.registerTask('preview', [
-    'recess:development',
-    'watch:all'
+  grunt.registerTask('css', [
+    'recess:production'
+  ]);
+
+  grunt.registerTask('js', [
+    'jshint'
+  ]);
+
+  grunt.registerTask('listen', [
+    'recess:production',
+    'watch'
   ]);
 
   grunt.registerTask('serve', [
-    'default',
+    'libs',
+    'js',
+    'css',
+    'wintersmith:preview',
+    'combine',
     'exec:nginx:start'
   ]);
 
@@ -224,6 +256,22 @@ module.exports = function(grunt) {
     'symlink:bootstrap',
     'copy:mixmatch',
     'copy:project'
+  ]);
+
+  grunt.registerTask('combine', [
+    'concat',
+    'copy:frozen',
+    'copy:css',
+    'copy:js'
+  ]);
+
+  // Default task.
+  grunt.registerTask('default', [
+    'libs',
+    'js',
+    'css',
+    'wintersmith:build',
+    'combine'
   ]);
 
 };
