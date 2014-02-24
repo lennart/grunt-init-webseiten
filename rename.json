@@ -1,8 +1,9 @@
 {
   "meta.sublime-project": "{%= name %}.sublime-project",
-
-  "style.less": "{%= assets_dir %}/css/{%= name %}.less",
   "{%= assets_dir %}/css/src": "{%= assets_dir %}/css/{%= name %}",
+  "style.less": "{%= assets_dir %}/css/{%= name %}.less",
+  "mixins.less": "{%= assets_dir %}/css/{%= name %}/mixins.less",
+  
 
   "script.js": "{%= assets_dir %}/js/{%= name %}.js"
 }

@@ -90,9 +90,19 @@ exports.template = function(grunt, init, done) {
         "grunt-contrib-jshint": "~0.6.4",
         "grunt-contrib-symlink": "*",
         "grunt-contrib-copy": "~0.4.1",
-        "grunt-wintersmith": "0.0.2",
+        "grunt-contrib-compress": "*",
+        "grunt-contrib-clean": "*",
+        "grunt-contrib-cssmin": "*",
+        "grunt-contrib-less": "*",
+        "grunt-contrib-uglify": "*",
+        "grunt-autoprefixer": "*",
+        "grunt-wintersmith": ">=0.x",
+        "grunt-image-resize": "*",
+        "grunt-image-embed": "*",
+        "grunt-lint-inline": "*",
         "wintersmith-nunjucks": "*",
-        "twitter-bootstrap-3.0.0": "~3.0.0"
+        //"bootstrap": "git://github.com/twbs/bootstrap.git#tags/v3.1.1"
+        "bootstrap": "https://github.com/twbs/bootstrap/archive/v3.1.1.tar.gz"
       }
     });
 

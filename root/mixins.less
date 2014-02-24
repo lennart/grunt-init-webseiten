@@ -1,0 +1,15 @@
+// This comment will not be seen in compiled source
+// However
+/* Your new Mixins */
+// Will be seen in source
+// @see http://lesscss.org/features/#mixins-feature
+// for more information on mixins
+.[%= name %]-webseiten-mixin-example() {
+  text-overflow: ellipsis;
+  word-wrap: nowrap;
+  width: 10em;
+
+  &::after {
+    content: "whatever color of [%= name %] you like."
+  }
+}
