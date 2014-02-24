@@ -25,7 +25,7 @@ exports.template = function(grunt, init, done) {
   var base_path = grunt.option('base_path') || process.env["HOME"];
 
   init.prompts.name.default(null, {}, function(err, value) {
-    var props = { name: value };
+    var props = { name: value, now: new Date(), rand: ((Math.random() * 40001) + 10000).toFixed(0) };
     props.dom = true;
     props.port = 9999;
     props.base_path = base_path;
@@ -80,16 +80,15 @@ exports.template = function(grunt, init, done) {
       "author": "",
       "license": "BSD",
       "dependencies": {
-        "grunt-recess": "~0.4.0",
-        "grunt-contrib-concat": "~0.3.0",
+        "grunt-contrib-concat": "*",
         "grunt": "~0.4.1",
         "component": "*",
-        "grunt-exec": "~0.4.2",
+        "grunt-exec": "*",
         "grunt-modernizr": "*",
-        "grunt-contrib-watch": "~0.5.3",
-        "grunt-contrib-jshint": "~0.6.4",
+        "grunt-contrib-watch": "*",
+        "grunt-contrib-jshint": "*",
         "grunt-contrib-symlink": "*",
-        "grunt-contrib-copy": "~0.4.1",
+        "grunt-contrib-copy": "*",
         "grunt-contrib-compress": "*",
         "grunt-contrib-clean": "*",
         "grunt-contrib-cssmin": "*",
@@ -101,6 +100,8 @@ exports.template = function(grunt, init, done) {
         "grunt-image-embed": "*",
         "grunt-lint-inline": "*",
         "wintersmith-nunjucks": "*",
+        "fsevents": ">=0.1.6",
+        "recursive-readdir": ">=0.0.2",
         //"bootstrap": "git://github.com/twbs/bootstrap.git#tags/v3.1.1"
         "bootstrap": "https://github.com/twbs/bootstrap/archive/v3.1.1.tar.gz"
       }

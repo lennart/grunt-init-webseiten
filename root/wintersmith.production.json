@@ -1,6 +1,7 @@
 {
   "locals": {
-    "title": "[%= name %]"
+    "title": "[%= name %]",
+    "debug": false
   },
   "output": "[%= public_path %]",
   "ignore": [".git/*"],

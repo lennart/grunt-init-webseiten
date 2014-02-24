@@ -86,6 +86,7 @@ module.exports = function(grunt) {
       },
       nginx: {
         cmd: function(action) {
+          grunt.log.ok("Server running on port [%= rand %]");
           var signal = (action === "start") ? "": "-s " + action;
           return "nginx -c '" + __dirname + "/nginx.conf' " + signal;
         }
@@ -169,7 +170,8 @@ module.exports = function(grunt) {
       },
       css: {
         files: [
-          '<%= main.src %>css/<%= pkg.name %>.less'
+          '<%= main.src %>css/<%= pkg.name %>.less',
+          '<%= main.src %>css/<%= pkg.name %>/*.less'
         ],
         tasks: ['css', 'concat:css', 'copy:css'],
         options: {
@@ -186,8 +188,8 @@ module.exports = function(grunt) {
         }
       },
       gruntfile: {
-        files: '<%= jshint.gruntfile.src %>',
-        tasks: ['jshint:gruntfile']
+        files: 'Gruntfile.js',
+        tasks: ['jshint']
       }
     },
     less: {
@@ -217,21 +219,21 @@ module.exports = function(grunt) {
           // "<%= main.frozen %>css/animate/animate.min.css",
           "<%= less.production.dest %>"
         ],
-        dest: "<%= main.dest %>/css/<%= pkg.name %>.css"
+        dest: "<%= main.dest %>css/<%= pkg.name %>.css"
       },
       js: {
         src: [
           "<%= main.build %>modernizr.js",
-          "<%= main.build %>/components.js",
-          "<%= main.src %>/js/<%= pkg.name %>.js"
+          "<%= main.build %>components.js",
+          "<%= main.src %>js/<%= pkg.name %>.js"
         ],
-        dest: "<%= main.dest %>/js/<%= pkg.name %>.js"
+        dest: "<%= main.dest %>js/<%= pkg.name %>.js"
       },
       lib: {
         src: [
           "<%= main.src %>js/lib/**/*.js"
         ],
-        dest: "<%= main.build %>/<%= pkg.name %>.ui.js"
+        dest: "<%= main.build %><%= pkg.name %>.ui.js"
       }
     },
     copy: {
@@ -282,6 +284,13 @@ module.exports = function(grunt) {
           overwrite: false
         }
       },
+      docs: {
+        files: [{
+          dest: "<%= main.docs %>/index.md",
+          src: ["devel/index.md"]
+        }],
+        overwrite: false
+      },
       imageEmbed: {
         src: ["**"],
         expand: true,
@@ -300,7 +309,7 @@ module.exports = function(grunt) {
               root = grunt.config.get("main.wintersmith").replace(/assets\/$/, ""),
               inline = {
                 css: function(match, href) {
-
+                  console.log(href, "href");
                   var file = grunt.file.read(root + href);
 
                   return "<style>\n" + file + "\n</style>";
@@ -387,21 +396,16 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('listen', [
-    'less:production',
     'watch'
   ]);
 
   grunt.registerTask('serve', [
-    'libs',
-    'js',
-    'css',
-    'wintersmith',
-    'combine',
     'exec:nginx:start'
   ]);
 
   grunt.registerTask('scaffold', [
     'symlink:bootstrap',
+    'copy:docs',
     'copy:mixmatch',
     'copy:project'
   ]);

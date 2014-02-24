@@ -10,9 +10,8 @@ dist: all
 scaffold: npm
 	grunt scaffold
 
-serve: all
-	$(grunt serve) &\
-	$(grunt listen) &\
+serve: bundle
+	sh serve.sh
 
 npm:
 	npm install
