@@ -1,5 +1,6 @@
 {
-  "laxcomma": false,
+  "laxcomma": true,
+  "laxbreak": false,
   "strict": false,
   "eqeqeq": true,
   "immed": true,
@@ -13,6 +14,7 @@
   "browser": true,
   "node": true,
   "curly": true,
+  "asi": true,
   "globals": {
     "jQuery": true
   }

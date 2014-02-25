@@ -64,6 +64,7 @@ module.exports = function(grunt) {
       src: "[%= assets_dir %]",
       build: "build/",
       frozen: "static/",
+      templates: "templates/",
       imageStyles: "[%= assets_dir %]styles/",
       dest: "public/",
     },
@@ -110,8 +111,8 @@ module.exports = function(grunt) {
       },
       html: {
         src: [
-          "<%= main.templates %>/**/*.html",
-          "<%= main.templates %>/**/*.php"
+          "<%= main.templates %>**/*.html",
+          "<%= main.wintersmith %>../**/*.html",
         ]
       }
     },
@@ -199,7 +200,7 @@ module.exports = function(grunt) {
       },
       production: {
         options: {
-            compress: true
+            compress: false
         },
         src: ["<%= main.src %>css/<%= pkg.name %>.less"],
         dest: "<%= main.dest %>css/<%= pkg.name %>.css"
@@ -317,7 +318,7 @@ module.exports = function(grunt) {
                 js: function(match, src) {
                   var file = grunt.file.read(root + src);
 
-                  return "<script type=text/javascript>" + file + "</script>";
+                  return "<script type=text/javascript>\n" + file + "\n</script>";
                 }
               };
 
@@ -388,7 +389,8 @@ module.exports = function(grunt) {
 
   grunt.registerTask('css', [
     'less:production',
-    "autoprefixer:dist"
+    "autoprefixer:dist",
+    //"cssmin"
   ]);
 
   grunt.registerTask('js', [
@@ -422,10 +424,11 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('bundle', [
+    'inlinelint:html',
     'symlink:bootstrap', // assure static fonts are ready
     'copy:imageEmbed',
     'imageEmbed:dist',
-    'copy:bundle',
+    'copy:bundle'
   ]);
 
   grunt.registerTask('dist', [
@@ -446,21 +449,4 @@ module.exports = function(grunt) {
     'wintersmith',
     'combine'
   ]);
-
-  // facilities
-  //  'libs',
-    // 'js',
-    // 'css',
-    // 'wintersmith',
-    // 'combine'
-
-  // vivadi
-  // "jshint", "inlinelint", "less:production", "autoprefixer", "cssmin"
-  // online
-// "clean:build",
-//     "libs",
-//     "js",
-//     "css",
-//     "wintersmith",
-//     "combine"
 };
