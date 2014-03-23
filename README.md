@@ -77,14 +77,14 @@ open ~/Sites/<project-name>/index.html
 
 [Wintersmith][wintersmith] allows for different templates with each file.
 
-You can edit jade templates in the `~/Source/<your-project-name>/templates/` folder.
+You can edit [nunjucks][nunjucks] templates in the `~/Source/<your-project-name>/templates/` folder.
 
 For example:
 
 ```markdown
 ---
 title: Foobar
-template: hero.jade
+template: hero.html
 ---
 
 * Two steps to success
@@ -99,7 +99,7 @@ To use your shiny hero template on this page.
 [node][node], [npm][npm]
 [bootstrap][bootstrap], [component][component],
 [wintersmith][wintersmith], [grunt][grunt],
-[markdown][markdown]
+[markdown][markdown], [nunjucks][nunjucks]
 
 [grunt]: http://gruntjs.com
 [wintersmith]: http://wintersmith.io/
@@ -110,3 +110,4 @@ To use your shiny hero template on this page.
 [npm]: http://npmjs.org/
 [bootstrap]: http://getbootstrap.com/
 [component]: http://component.io/
+[nunjucks]: http://jlongster.github.io/nunjucks/
