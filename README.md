@@ -20,7 +20,7 @@ then
 webseiten assumes the following:
 
 * you're documents are
-  * written in markdown
+  * written in [Markdown][markdown]
   * stored in `~/Documents/<project-name>`
 * you're source code is
   * stored in `~/Source/<project-name>`
@@ -48,7 +48,7 @@ To actually see something
 
 Create a file called `index.md` in `~/Documents/<your-project-name>/`.
 
-Put the following into it (Markdown):
+Put the following into it ([Markdown][markdown]):
 
 ```markdown
 ---
@@ -75,7 +75,7 @@ open ~/Sites/<project-name>/index.html
 
 ### Metadata
 
-Wintersmith allows for different templates with each file.
+[Wintersmith][wintersmith] allows for different templates with each file.
 
 You can edit jade templates in the `~/Source/<your-project-name>/templates/` folder.
 
@@ -96,11 +96,17 @@ To use your shiny hero template on this page.
 
 ## Thanks to
 
-node, npm
-bootstrap, component,
-wintersmith, [grunt][],
-markdown
+[node][node], [npm][npm]
+[bootstrap][bootstrap], [component][component],
+[wintersmith][wintersmith], [grunt][grunt],
+[markdown][markdown]
 
 [grunt]: http://gruntjs.com
+[wintersmith]: http://wintersmith.io/
 [grunt-init]: http://gruntjs.com/project-scaffolding
 [st]: http://www.sublimetext.com/docs/3/projects.html
+[markdown]: https://daringfireball.net/projects/markdown/
+[node]: http://nodejs.org/
+[npm]: http://npmjs.org/
+[bootstrap]: http://getbootstrap.com/
+[component]: http://component.io/
