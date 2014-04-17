@@ -1,4 +1,5 @@
 # grunt-init-webseiten
+__DEPRECATED__ in favor of [yo](http://yeoman.io) [generators](http://yeoman.io/community-generators.html). While I couldn't find a matching generator for [wintersmith](http://wintersmith.io), work on this `grunt-init` template is stopped.
 
 > Create a website scaffold with [grunt-init][].
 
